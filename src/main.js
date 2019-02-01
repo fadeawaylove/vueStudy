@@ -1,14 +1,13 @@
 import Vue from 'vue';
 import App from './App.vue';
 
-// 引入element-ui
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
-
 // 引入vue-resource
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
+
+// 引入boostrap
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue);
 
 // 引入分离出来的路由模块
 import router from './router/router.js';

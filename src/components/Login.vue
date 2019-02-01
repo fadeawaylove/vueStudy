@@ -1,20 +1,16 @@
 <template>
-    
+  <div id="login" class="container">
+    我是
+  </div>
 </template>
 
-<script>
-    export default {
-        name: "Login",
-      data(){
-          return {
-            usename:'',
-            password:''
-
-          }
-      }
-    }
+<script> 
+export default { 
+   
+   
+}
 </script>
 
-<style scoped>
 
+<style scoped>
 </style>
