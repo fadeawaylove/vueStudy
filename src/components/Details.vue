@@ -102,30 +102,68 @@ export default {
     }
     ,
     methods :{
-        plotChart(optionData){
-               // 渲染折线图
-                var echarts = require('echarts');
-                // 基于准备好的dom，初始化echarts实例
-                var myChart = echarts.init(document.getElementById(this.currentChart));
-                
-                var option = this.getOption(optionData, myChart);
-                // myChart.setOption(option);
-                window.addEventListener("resize",function(){                    
-                    myChart.resize();
-                });
-        },
-        getOption(optionData, myChart){
-            
-            
-                return option
-        },
         requestData1(app_version){
             // 请求数据
             this.$http.post(constantDict.HOST + "details", {app_version:app_version}).then(
                 resp => {
-                    console.log(resp);
-                    // 得到返回之后开始画图
-                    this.plotChart(resp.body.data);
+                    // 返回数据是否成功
+                    if(resp.body.success == "true"){
+                        // 组装数据
+                        function addData(shift) {
+                                now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/');
+                                date.push(now);
+                                data.push((Math.random() - 0.4) * 10 + data[data.length - 1]);
+
+                                if (shift) {
+                                    date.shift();
+                                    data.shift();
+                                }
+
+
+                        // 渲染图表
+                        option = {
+                                xAxis: {
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    data: date
+                                },
+                                yAxis: {
+                                    boundaryGap: [0, '50%'],
+                                    type: 'value'
+                                },
+                                series: [
+                                    {
+                                        name:'成交',
+                                        type:'line',
+                                        smooth:true,
+                                        symbol: 'none',
+                                        stack: 'a',
+                                        areaStyle: {
+                                            normal: {}
+                                        },
+                                        data: data
+                                    }
+                                ]
+                            };
+                            setInterval(function () {
+                                        addData(true);
+                                        myChart.setOption({
+                                            xAxis: {
+                                                data: date
+                                            },
+                                            series: [{
+                                                name:'成交',
+                                                data: data
+                                            }]
+                                        });
+                                    }, 500);
+
+
+
+                    }else{
+                        alert(resp.body.errmsg)
+                    }
+
                 },
                 err => {
                     this.$router.push("login");
