@@ -1,43 +1,41 @@
-import Vue from 'vue';
-import App from './App.vue';
+import Vue from 'vue'
 
-// 引入vue-resource
-import VueResource from 'vue-resource';
-Vue.use(VueResource);
+import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
-// 引入boostrap
-// import BootstrapVue from 'bootstrap-vue'
-// Vue.use(BootstrapVue);
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
-// 引入localStorage
-import storage from './model/storage.js'
+import '@/styles/index.scss' // global css
 
-// 引入element-ui
-import ElementUi from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUi);
+import App from './App'
+import store from './store'
+import router from './router'
 
-// 引入分离出来的路由模块
-import router from './router/router.js';
+import '@/icons' // icon
+import '@/permission' // permission control
 
-// 这里是拦截器
-Vue.http.interceptors.push((request, next) => {
-  //request.credentials = true; // 接口每次请求会跨域携带cookie
-  //request.method= 'POST'; // 请求方式（get,post）
-  var token = storage.get('token');
-  if(token){
-    request.headers.set('Authorization', 'Bearer ' + token) // 请求headers携带参数    
-  } 
-  // 先每次清除token 便于测试
-  // storage.remove('token');
+/**
+ * If you don't want to use mock-server
+ * you want to use MockJs for mock api
+ * you can execute: mockXHR()
+ *
+ * Currently MockJs will be used in the production environment,
+ * please remove it before going online! ! !
+ */
+import { mockXHR } from '../mock'
+if (process.env.NODE_ENV === 'production') {
+  mockXHR()
+}
 
-  next(function (response) {
-    return response;
-  });
-})
+// set ElementUI lang to EN
+Vue.use(ElementUI, { locale })
+
+Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
-  router: router,
+  router,
+  store,
   render: h => h(App)
-});
+})
