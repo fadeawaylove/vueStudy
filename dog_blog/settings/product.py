@@ -1,4 +1,4 @@
 from .common import *
 
 DEBUG = False
-ALLOWED_HOSTS = ['*.fadeaway.ltd']
+ALLOWED_HOSTS = ['dog.fadeaway.ltd']
