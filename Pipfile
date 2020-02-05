@@ -5,6 +5,7 @@ url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 verify_ssl = true
 
 [dev-packages]
+fabric = "*"
 
 [packages]
 pytz = "==2019.3"
