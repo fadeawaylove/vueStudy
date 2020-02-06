@@ -1,6 +1,6 @@
 from fabric import task
 from invoke import Responder
-from ._credentials import github_password, github_username
+from _credentials import github_password, github_username
 
 
 def _get_github_auth_responders():
@@ -19,22 +19,22 @@ def _get_github_auth_responders():
 
 @task
 def deploy(c):
-    program_name = dog_blog
+    program_name = "dog_blog"
     # 先停止应用
-    cmd = c.run(f"supercisorctl stop {program_name}")
+    c.run(f"~/.local/bin/supervisorctl -c ~/etc/supervisord.conf stop {program_name}")
     # 拉代码
     with c.cd("~/code/dogBlog"):
-        c.run("git pull")
+        cmd = 'git pull'
         responders = _get_github_auth_responders()
         c.run(cmd, watchers=responders)
     # 安装依赖，迁移数据库，收集静态文件
     with c.cd("~/code/dogBlog"):
-        c.run("pipenv install --deploy --ignore-pipfile")
-        c.run("pipenv run python manage.py migrate")
-        c.run('pipenv run python collectstatic --noinput')
+        c.run("~/.local/bin/pipenv install --deploy --ignore-pipfile")
+        c.run("~/.local/bin/pipenv run python manage.py migrate")
+        c.run('~/.local/bin/pipenv run python manage.py collectstatic --noinput')
     # 重新启动应用
-    c.run(f"supercisorctl start {program_name}")
+    c.run(f"~/.local/bin/supervisorctl -c ~/etc/supervisord.conf start {program_name}")
 
-
+# pipenv run fab -H daigua@149.129.67.128 --prompt-for-login-password -p deploy
 
 
