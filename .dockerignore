@@ -2,3 +2,4 @@
 _credentials.py
 fabfile.py
 *.sqlite3
+*.log
