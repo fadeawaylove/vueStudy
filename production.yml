@@ -1,0 +1,42 @@
+version: '3'
+
+volumes:
+  static:
+  database:
+
+services:
+  dog_blog:
+    build:
+      context: .
+      dockerfile: compose/production/django/Dockerfile
+    image: dog_blog
+    container_name: dog_blog
+    working_dir: /app
+    volumes:
+      - database:/app/database
+      - static:/app/static
+    env_file:
+      - .envs/.production
+    ports:
+      - "8000:8000"
+    command: /start.sh
+    # command: 
+    #   - /bin/sh   
+    #   - -c
+    #   - |
+    #     python3 manage.py migrate
+    #     python manage.py collectstatic --noinput
+    #     gunicorn dog_blog.wsgi:application -w 4 -k gthread -b 0.0.0.0:8000 --chdir=/app
+
+  nginx:
+    build:
+      context: .
+      dockerfile: compose/production/nginx/Dockerfile
+    image: dog_blog_nginx
+    container_name: dog_blog_nginx
+    volumes:
+      - static:/apps/dogBlog/static
+      - /etc/nginx/conf.d:/etc/nginx/conf.d/
+    ports:
+      - "80:80"
+      - "443:443"
