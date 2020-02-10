@@ -6,6 +6,7 @@ verify_ssl = true
 
 [dev-packages]
 fabric = "*"
+faker = "*"
 
 [packages]
 pytz = "==2019.3"
@@ -13,6 +14,7 @@ sqlparse = "==0.3.0"
 Markdown = "==3.1.1"
 Django = "==2.1.*"
 gunicorn = "*"
+django-pure-pagination = "*"
 
 [requires]
 python_version = "3.7"

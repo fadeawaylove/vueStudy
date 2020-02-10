@@ -6,38 +6,31 @@ from django.http import HttpResponse
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView
 from markdown.extensions.toc import TocExtension
+from pure_pagination.mixins import PaginationMixin
 
 from .models import *
 
 # Create your views here.
-class IndexView(ListView):
+class IndexView(PaginationMixin, ListView):
     model = Post
     template_name = "blog/index.html"
     context_object_name = "post_list"
+    paginate_by = 10
 
-class CategoryView(ListView):
-    model = Post
-    template_name = "blog/index.html"
-    context_object_name = 'post_list'
+class CategoryView(IndexView):
 
     def get_queryset(self):
         cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
         return super(CategoryView, self).get_queryset().filter(category=cate)
 
-class ArchivesView(ListView):
-    model = Post
-    template_name = "blog/index.html"
-    context_object_name = "post_list"
+class ArchivesView(IndexView):
 
     def get_queryset(self):
         year = self.kwargs.get("year")
         month = self.kwargs.get("month")
         return super(ArchivesView, self).get_queryset().filter(create_time__year=year, create_time__month=month)
 
-class TagView(ListView):
-    model = Post
-    template_name = "blog/index.html"
-    context_object_name = "post_list"
+class TagView(IndexView):
 
     def get_queryset(self):
         tag_id = self.kwargs.get("pk")

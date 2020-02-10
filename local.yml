@@ -1,8 +1,5 @@
 version: '3'
 
-volumes:
-  database_local:
-
 services:
   dog_blog_local:
     build:
@@ -12,7 +9,6 @@ services:
     container_name: dog_blog_local
     working_dir: /app
     volumes:
-      - database_local:/app/database
       - .:/app
     ports:
       - "8000:8000"
