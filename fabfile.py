@@ -17,28 +17,6 @@ def _get_github_auth_responders():
     )
     return [username_responder, password_responder]
 
-def _get_certbot_responders():
-    enter_email = Responder(
-        pattern="Enter email address (used for urgent renewal and security notices) (Enter 'c' to cancel):",
-        response="1032939141@qq.com\n"
-    )
-    agree_policy = Responder(
-        pattern="(A)gree/(C)ancel:",
-        response="A\n"
-    )
-    share_email_address = Responder(
-        pattern="(Y)es/(N)o:",response="Y\n"
-    )
-    select_server = Responder(
-        pattern="blank to select all options shown (Enter 'c' to cancel):",
-        response="1\n"
-    )
-    select_redirect = Responder(
-        pattern="Select the appropriate number [1-2] then [enter] (press 'c' to cancel):",
-        response="2\n"
-    )
-
-
 @task
 def deploy(c):
     program_name = "dog_blog"
@@ -62,3 +40,31 @@ def deploy(c):
 # pipenv run fab -H daigua@149.129.67.128 --prompt-for-login-password -p deploy
 
 
+def _get_certbot_responders():
+    enter_email = Responder(
+        pattern="Enter email address (used for urgent renewal and security notices) (Enter 'c' to cancel):",
+        response="1032939141@qq.com\n"
+    )
+    agree_policy = Responder(
+        pattern="(A)gree/(C)ancel:",
+        response="A\n"
+    )
+    share_email_address = Responder(
+        pattern="(Y)es/(N)o:",
+        response="Y\n"
+    )
+    select_server = Responder(
+        pattern="blank to select all options shown (Enter 'c' to cancel):",
+        response="1\n"
+    )
+    select_redirect = Responder(
+        pattern="Select the appropriate number [1-2] then [enter] (press 'c' to cancel):",
+        response="2\n"
+    )
+    return [enter_email, agree_policy, share_email_address, select_server, select_redirect]
+
+@task
+def autossl(c):
+    with c.cd("~"):
+        c.run("docker exec -it dog_blog_nginx certbot --nginx", watchers=_get_certbot_responders())
+# pipenv run fab -H daigua@149.129.67.128 --prompt-for-login-password -p autossl
