@@ -27,17 +27,12 @@ def deploy(c):
         cmd = 'git pull'
         responders = _get_github_auth_responders()
         c.run(cmd, watchers=responders)
-    # 安装依赖，迁移数据库，收集静态文件
-    # with c.cd("~/code/dogBlog"):
-    #     c.run("~/.local/bin/pipenv install --deploy --ignore-pipfile")
-    #     c.run("~/.local/bin/pipenv run python manage.py migrate")
-    #     c.run('~/.local/bin/pipenv run python manage.py collectstatic --noinput')
-    # 重新启动应用
-    c.run(f"~/.local/bin/supervisorctl -c ~/etc/supervisord.conf start {program_name}")
-    # 申请ssl
-    # c.run("docker exec -it dog_blog_nginx certbot --nginx", watchers=_get_certbot_responders())
+    # 构建镜像
+    with c.cd("~/code/dogBlog"):
+        c.run('docker-compose -f production.yml build')
+        c.run(f"~/.local/bin/supervisorctl -c ~/etc/supervisord.conf start {program_name}")
 
-# pipenv run fab -H daigua@149.129.67.128 --prompt-for-login-password -p deploy
+# fab -H daigua@149.129.67.128 --prompt-for-login-password -p deploy
 
 
 def _get_certbot_responders():
@@ -67,4 +62,4 @@ def _get_certbot_responders():
 def autossl(c):
     with c.cd("~"):
         c.run("docker exec -it dog_blog_nginx certbot --nginx", watchers=_get_certbot_responders())
-# pipenv run fab -H daigua@149.129.67.128 --prompt-for-login-password -p autossl
+# fab -H daigua@149.129.67.128 --prompt-for-login-password -p autossl
