@@ -20,13 +20,6 @@ services:
     ports:
       - "8000:8000"
     command: /start.sh
-    # command: 
-    #   - /bin/sh   
-    #   - -c
-    #   - |
-    #     python3 manage.py migrate
-    #     python manage.py collectstatic --noinput
-    #     gunicorn dog_blog.wsgi:application -w 4 -k gthread -b 0.0.0.0:8000 --chdir=/app
 
   nginx:
     build:

@@ -4,12 +4,12 @@ RUN apk update \
     # Pillow dependencies
     && apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
 
-WORKDIR /app
-RUN pip install pipenv -i https://pypi.douban.com/simple
+RUN apk add autoconf automake gcc g++ make libffi-dev libffi-dev python-dev openssl-dev
 
-COPY Pipfile /app/Pipfile
-COPY Pipfile.lock /app/Pipfile.lock
-RUN pipenv install --system --deploy --ignore-pipfile
+WORKDIR /app
+
+COPY requirements.txt /app/requirements.txt
+RUN  pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . /app
 
