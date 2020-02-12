@@ -9,6 +9,7 @@ from django.utils.html import strip_tags
 from markdown.extensions.toc import TocExtension
 from django.utils.text import slugify
 from django.utils.functional import cached_property
+from mdeditor.fields import MDTextField
 
 # Create your models here.
 class Category(models.Model):
@@ -33,7 +34,8 @@ class Tag(models.Model):
 
 class Post(models.Model):
     title = models.CharField("标题",max_length=100)
-    body = models.TextField("正文")
+    # body = models.TextField("正文")
+    body = MDTextField()
     create_time = models.DateTimeField("创建时间", default=timezone.now)
     update_time = models.DateTimeField("修改时间")
     excerpt = models.CharField("摘要",max_length=200, blank=True)
