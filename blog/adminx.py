@@ -14,6 +14,7 @@ class PostAdmin(object):
     def save_models(self):
         self.new_obj.author = self.request.user
         logging.info("当前作者是:{}".format(self.request.user))
+        print("weisheniisjfiashfjhafjas;kfdaksfhj;akf")
         super().save_models()
 
 class CategoryAdmin(object):

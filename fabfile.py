@@ -22,6 +22,8 @@ def deploy(c):
     program_name = "dog_blog"
     # 先停止应用
     c.run(f"~/.local/bin/supervisorctl -c ~/etc/supervisord.conf stop {program_name}")
+    c.run("docker rmi dog_blog")
+
     # 拉代码
     with c.cd("~/code/dogBlog"):
         cmd = 'git pull'
