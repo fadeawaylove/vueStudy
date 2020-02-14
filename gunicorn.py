@@ -3,14 +3,12 @@ import os
 import logging
 import logging.handlers
 from logging.handlers import WatchedFileHandler
-import os
-from django.conf import settings
 
 # gunicorn dog_blog.wsgi:application -w 4 -k gthread -b 0.0.0.0:8000 --chdir=/app
 import multiprocessing
 bind = '0.0.0.0:8000'      #绑定ip和端口号
 backlog = 512                #监听队列
-chdir = settings.BASE_DIR  #gunicorn要切换到的目的工作目录
+chdir =  "/app" #gunicorn要切换到的目的工作目录
 timeout = 30      #超时
 worker_class = 'gevent' #使用gevent模式，还可以使用sync 模式，默认的是sync模式
 
@@ -35,5 +33,5 @@ D          request time in microseconds
 L          request time in decimal seconds
 p          process ID
 """
-accesslog = os.path.join(settings.BASE_DIR, "access.log")     #访问日志文件
-errorlog = os.path.join(settings.BASE_DIR, "error.log")       #错误日志文件
+accesslog = "/app/access.log"     #访问日志文件
+errorlog = "/app/error.log"       #错误日志文件
