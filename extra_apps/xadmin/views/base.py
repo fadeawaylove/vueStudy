@@ -374,10 +374,13 @@ class CommAdminView(BaseAdminView):
                 # find app icon
                 if app_label.lower() in self.apps_icons:
                     app_icon = self.apps_icons[app_label.lower()]
+                # order weight
+                order_weight = (getattr(apps.get_app_config(app_label), "order_weight", 0))
 
                 nav_menu[app_key] = {
                     'title': app_title,
                     'menus': [model_dict],
+                    'order_weight': order_weight
                 }
 
             app_menu = nav_menu[app_key]
@@ -396,6 +399,7 @@ class CommAdminView(BaseAdminView):
         nav_menu = list(nav_menu.values())
         nav_menu.sort(key=lambda x: x['title'])
 
+        nav_menu.sort(key=lambda x: x['order_weight'], reverse=True)
         site_menu.extend(nav_menu)
 
         return site_menu

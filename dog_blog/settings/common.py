@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'mdeditor',
     'pure_pagination',
     'blog.apps.BlogConfig',
-    'comments.apps.CommentsConfig'
+    'comments.apps.CommentsConfig',
+    'file_repo.apps.FileRepoConfig'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
