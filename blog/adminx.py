@@ -1,3 +1,4 @@
+import logging
 import xadmin
 
 
@@ -12,6 +13,7 @@ class PostAdmin(object):
 
     def save_models(self):
         self.new_obj.author = self.request.user
+        logging.info("当前作者是:{}".format(self.request.user))
         super().save_models()
 
 class CategoryAdmin(object):
