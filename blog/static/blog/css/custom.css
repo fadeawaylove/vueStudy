@@ -234,10 +234,13 @@ img {
 }
 
 .entry-content {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.6;
     font-weight: 300;
     color: #000;
+}
+.entry-content p {
+    font-size: 16px !important;
 }
 
 .post-category::after,
