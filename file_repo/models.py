@@ -50,21 +50,3 @@ class FileManager(models.Model):
         )
 
     url.short_description = "跳转查看"
-
-    def copy_url(self):
-        return mark_safe(
-            """
-            <input type="button" id="url_copy" onClick='copyLink()' value="复制url地址"></input>
-            <script type="text/javascript">
-            function copyLink(){
-                var e = document.getElementById("url_copy");
-                e.select(); // 选择对象
-                console.log(e.select())
-                document.execCommand("Copy"); // 执行浏览器复制命令
-                alert("内容复制成功！");
-            }
-            </script>
-            """
-        )
-
-    copy_url.short_description = "复制url"
