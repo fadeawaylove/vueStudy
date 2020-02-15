@@ -395,13 +395,11 @@ class CommAdminView(BaseAdminView):
 
         for menu in nav_menu.values():
             menu['menus'].sort(key=sortkeypicker(['order', 'title']))
-
         nav_menu = list(nav_menu.values())
         nav_menu.sort(key=lambda x: x['title'])
 
         nav_menu.sort(key=lambda x: x['order_weight'], reverse=True)
         site_menu.extend(nav_menu)
-
         return site_menu
 
     @filter_hook
