@@ -1,7 +1,7 @@
 import re
 import markdown
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView
@@ -61,3 +61,7 @@ def search(request):
         return redirect('blog:index')
     post_list = Post.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
     return render(request, 'blog/index.html', {'post_list': post_list})
+
+def more(request):
+    section_list = ExtraSection.objects.all()
+    return render(request, "blog/more.html", {"section_list": section_list})

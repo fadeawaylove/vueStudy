@@ -2,7 +2,7 @@ import logging
 import xadmin
 
 
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, ExtraSection
 
 
 @xadmin.sites.register(Post)
@@ -13,8 +13,6 @@ class PostAdmin(object):
 
     def save_models(self):
         self.new_obj.author = self.request.user
-        logging.info("当前作者是:{}".format(self.request.user))
-        print("weisheniisjfiashfjhafjas;kfdaksfhj;akf")
         super().save_models()
 
 class CategoryAdmin(object):
@@ -24,6 +22,12 @@ class CategoryAdmin(object):
 class TagAdmin(object):
     fields = ['name']
     list_filter = ["name"]
+
+@xadmin.sites.register(ExtraSection)
+class ExtraSectionAdmin(object):
+    list_display = ["section_title", "section_base_description", "section_name","section_img", "update_time"]
+    fields = ["section_title", "section_base_description", "section_name","section_img"]
+    list_filter = ["section_title"]
 
 # xadmin.site.register(Post, PostAdmin)
 xadmin.site.register(Category, CategoryAdmin)

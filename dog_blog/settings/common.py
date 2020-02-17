@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'pure_pagination',
     'blog.apps.BlogConfig',
     'comments.apps.CommentsConfig',
-    'file_repo.apps.FileRepoConfig'
+    'file_repo.apps.FileRepoConfig',
+    'fund.apps.FundConfig'
 ]
 
 MIDDLEWARE = [

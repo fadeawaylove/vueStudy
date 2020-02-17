@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', xadmin.site.urls),
     path(r'mdeditor/', include('mdeditor.urls')),
     re_path(r'media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
-    # path('admin/', admin.site.urls),
+    path('fund/', include("fund.urls")),
     path('', include('blog.urls')),
     path('', include('comments.urls')),
     path('all/rss/', AllPostsRssFeed(), name="rss")

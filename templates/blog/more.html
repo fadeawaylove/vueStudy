@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+{% for section in section_list %}
+<div class="card" style="width: 18rem;display: inline-block;">
+  <img src="{{ section.section_img }}" class="card-img-top" alt="">
+  <div class="card-body">
+    <h5 class="card-title">{{ section.section_title }}</h5>
+    <p class="card-text">基金工具，更好的做基金决策！</p>
+    <a href="{{ section.get_absolute_url }}" class="btn btn-primary">瞧一瞧</a>
+  </div>
+</div>
+{% empty %}
+<div class="no-post">暂时没有内容！</div>
+
+{% endfor %}
+
+{% endblock main %}
+
+
+{% block toc %}
+{#这里放一些最新板块更新的信息#}
+    尚未有任何动作
+
+{% endblock toc %}
+
+
+{% block common_toc %}
+
+{%  endblock common_toc %}
