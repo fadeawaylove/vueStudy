@@ -4,7 +4,7 @@ RUN apk update \
     # Pillow dependencies
     && apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
 
-RUN apk add autoconf automake gcc g++ make libffi-dev libffi-dev python-dev openssl-dev
+RUN apk add autoconf automake gcc g++ make libffi-dev python-dev openssl-dev build-base musl-dev libxslt-dev --no-cache
 
 WORKDIR /app
 
