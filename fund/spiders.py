@@ -1,4 +1,3 @@
-import lxml
 import logging
 
 
