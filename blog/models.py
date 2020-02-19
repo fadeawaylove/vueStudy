@@ -10,6 +10,8 @@ from markdown.extensions.toc import TocExtension
 from django.utils.text import slugify
 from django.utils.functional import cached_property
 from mdeditor.fields import MDTextField
+from django.utils.safestring import mark_safe
+
 
 # Create your models here.
 class Category(models.Model):
@@ -67,6 +69,11 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return reverse("blog:detail", kwargs={"pk": self.pk})
+
+    def post_address(self):
+        return mark_safe("<a href=" "'" + self.get_absolute_url() + "'"+ " target='blank'>查看文章</a>")
+
+    post_address.short_description="文章地址"
 
     def increase_views(self):
         self.views += 1

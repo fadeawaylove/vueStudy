@@ -7,7 +7,7 @@ from .models import Post, Category, Tag
 
 @xadmin.sites.register(Post)
 class PostAdmin(object):
-    list_display = ['title', 'create_time', 'update_time', 'category', 'author']
+    list_display = ['title', 'post_address','category', 'author', 'create_time', 'update_time']
     fields = ['title', 'body', 'excerpt', 'category', 'tags']
     list_filter = ["title", "category", "tags"]
 
