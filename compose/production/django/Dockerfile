@@ -4,7 +4,7 @@ RUN apk update \
     # Pillow dependencies
     && apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
 
-RUN apk add autoconf automake make libffi-dev python-dev  build-base musl-dev --no-cache
+RUN apk add autoconf automake make libffi-dev build-base musl-dev --no-cache
 
 # lxml要用的
 RUN apk add --update --no-cache g++ gcc libxslt-dev python3-dev openssl-dev
