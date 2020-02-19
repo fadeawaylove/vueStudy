@@ -103,29 +103,29 @@ def generate_rich_content(value):
     return {"content": content, "toc": toc}
 
 
-class ExtraSection(models.Model):
-    """
-    额外的板块
-    """
-
-    section_title = models.CharField("板块标题", max_length=100)
-    section_base_description = models.CharField("基本描述", max_length=256)
-    section_name = models.CharField("板块名", max_length=20, help_text="用于帮助页面组合板块详情对应的url")
-    section_img = models.CharField("封面图片地址", max_length=200, blank=True)
-
-    create_time = models.DateTimeField("创建时间", default=timezone.now)
-    update_time = models.DateTimeField("修改时间")
-
-    class Meta:
-        verbose_name = '更多板块'
-        verbose_name_plural = verbose_name
-        ordering = ['-create_time']
-
-    def save(self, *args, **kwargs):
-        self.update_time = timezone.now()
-        super().save(*args, **kwargs)
-
-
-    def get_absolute_url(self):
-        return reverse("{}:index".format(self.section_name))
+# class ExtraSection(models.Model):
+#     """
+#     额外的板块
+#     """
+#
+#     section_title = models.CharField("板块标题", max_length=100)
+#     section_base_description = models.CharField("基本描述", max_length=256)
+#     section_name = models.CharField("板块名", max_length=20, help_text="用于帮助页面组合板块详情对应的url")
+#     section_img = models.CharField("封面图片地址", max_length=200, blank=True)
+#
+#     create_time = models.DateTimeField("创建时间", default=timezone.now)
+#     update_time = models.DateTimeField("修改时间")
+#
+#     class Meta:
+#         verbose_name = '更多板块'
+#         verbose_name_plural = verbose_name
+#         ordering = ['-create_time']
+#
+#     def save(self, *args, **kwargs):
+#         self.update_time = timezone.now()
+#         super().save(*args, **kwargs)
+#
+#
+#     def get_absolute_url(self):
+#         return reverse("{}:index".format(self.section_name))
 

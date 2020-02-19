@@ -2,7 +2,7 @@ import logging
 import xadmin
 
 
-from .models import Post, Category, Tag, ExtraSection
+from .models import Post, Category, Tag
 
 
 @xadmin.sites.register(Post)
@@ -23,11 +23,11 @@ class TagAdmin(object):
     fields = ['name']
     list_filter = ["name"]
 
-@xadmin.sites.register(ExtraSection)
-class ExtraSectionAdmin(object):
-    list_display = ["section_title", "section_base_description", "section_name","section_img", "update_time"]
-    fields = ["section_title", "section_base_description", "section_name","section_img"]
-    list_filter = ["section_title"]
+# @xadmin.sites.register(ExtraSection)
+# class ExtraSectionAdmin(object):
+#     list_display = ["section_title", "section_base_description", "section_name","section_img", "update_time"]
+#     fields = ["section_title", "section_base_description", "section_name","section_img"]
+#     list_filter = ["section_title"]
 
 # xadmin.site.register(Post, PostAdmin)
 xadmin.site.register(Category, CategoryAdmin)
