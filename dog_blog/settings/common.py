@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'comments.apps.CommentsConfig',
     'file_repo.apps.FileRepoConfig',
-    'fund.apps.FundConfig'
+    # 'fund.apps.FundConfig'
 ]
 
 MIDDLEWARE = [
