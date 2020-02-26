@@ -14,7 +14,7 @@ services:
     working_dir: /app
     volumes:
       - database:/app/database
-      - static:/app/static
+      - ./static:/app/static
     env_file:
       - .envs/.production
     ports:
