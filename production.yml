@@ -21,14 +21,14 @@ services:
       - "8000:8000"
     command: /start.sh
 
-  nginx:
-    build:
-      context: .
-      dockerfile: compose/production/nginx/Dockerfile
-    image: dog_blog_nginx
-    container_name: dog_blog_nginx
-    volumes:
-      - static:/apps/dogBlog/static
-    ports:
-      - "80:80"
-      - "443:443"
+#  nginx:
+#    build:
+#      context: .
+#      dockerfile: compose/production/nginx/Dockerfile
+#    image: dog_blog_nginx
+#    container_name: dog_blog_nginx
+#    volumes:
+#      - static:/apps/dogBlog/static
+#    ports:
+#      - "80:80"
+#      - "443:443"

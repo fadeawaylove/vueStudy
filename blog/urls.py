@@ -10,6 +10,6 @@ urlpatterns = [
     path("categories/<int:pk>/", views.CategoryView.as_view(), name="category"),
     path("tags/<int:pk>", views.TagView.as_view(), name="tag"),
     path("search/", views.search, name="search"),
-    path("more/", views.more, name="more")
+    path("posts/upload", views.post_upload, name="post_upload"),
+    # path("more/", views.more, name="more")
 ]
-

@@ -1,14 +1,10 @@
-import re
-import markdown
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-from django.utils.text import slugify
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
-from markdown.extensions.toc import TocExtension
 from pure_pagination.mixins import PaginationMixin
 from django.db.models import Q
+from django.http import HttpResponse
 
 from .models import *
 
@@ -62,6 +58,12 @@ def search(request):
     post_list = Post.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
     return render(request, 'blog/index.html', {'post_list': post_list})
 
-def more(request):
-    section_list = ExtraSection.objects.all()
-    return render(request, "blog/more.html", {"section_list": section_list})
+# def more(request):
+#     section_list = ExtraSection.objects.all()
+#     return render(request, "blog/more.html", {"section_list": section_list})
+
+
+# 文章上传接口
+def post_upload(request):
+    print(request.FILES)
+    return HttpResponse("aaa")
