@@ -41,12 +41,12 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'reversion',
+    'import_export',
     'mdeditor',
     'pure_pagination',
     'blog.apps.BlogConfig',
     'comments.apps.CommentsConfig',
     'file_repo.apps.FileRepoConfig',
-    # 'fund.apps.FundConfig'
 ]
 
 MIDDLEWARE = [
@@ -140,3 +140,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 在导入数据时使用数据库事务，默认False
+IMPORT_EXPORT_USE_TRANSACTIONS = True
