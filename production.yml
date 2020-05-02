@@ -1,7 +1,6 @@
 version: '3'
 
 volumes:
-  static:
   database:
 
 services:
@@ -15,6 +14,7 @@ services:
     volumes:
       - database:/app/database
       - ./static:/app/static
+      - ./media:/app/media
     env_file:
       - .envs/.production
     ports:
