@@ -3,7 +3,7 @@ from .common import *
 
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = False
-ALLOWED_HOSTS = ['dog.fadeaway.ltd']
+ALLOWED_HOSTS = ["127.0.0.1",'localhost','.fadeaway.ltd']
 FILE_HOST = "dog.fadeaway.ltd"
 
 # django的日志配置

@@ -25,25 +25,27 @@ class FileManager(models.Model):
 
 
     def url(self):
-        url_str = '"' + self.file_path.url + '"'
+        url_str = self.file_path.url
         return mark_safe(
-            """
-            <a href=""" + url_str + """ target='blank' id="file_url">文件地址</a>
-            <input type="button" onClick=copyToClip(""" + url_str + """) value="复制">
-            <script type="text/javascript">
-            function copyToClip(content, message) {
-                content = document.location.origin + content
+            f"""
+            <a href="{url_str}" target='blank' id="file_url">文件地址</a>
+            <input type="button" onClick=copyToClip("{url_str}",1) value="复制">
+            <input type="button" onClick=copyToClip("{url_str}",2) value="复制markdown格式">
+            """ + 
+            """ <script type="text/javascript">
+            function copyToClip(content, copyType) {
+                if(copyType === 1){
+                    content = document.location.origin + content;
+                }else{"""+
+                    f"""content =  "![{self.name}](" + document.location.origin + content + ")";"""+"""
+                }
                 var aux = document.createElement("input"); 
                 aux.setAttribute("value", content); 
                 document.body.appendChild(aux); 
                 aux.select();
                 document.execCommand("copy"); 
                 document.body.removeChild(aux);
-                if (message == null) {
-                    alert("复制成功");
-                } else{
-                    alert(message);
-                }
+                alert("复制成功");
                 }
             </script>
             """
