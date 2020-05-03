@@ -57,7 +57,7 @@ class Post(models.Model):
         # 由于摘要并不需要生成文章目录，所以去掉了目录拓展。
         md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
-            'markdown.extensions.codehilite',
+            # 'markdown.extensions.codehilite',
         ])
  
         # 先将 Markdown 文本渲染成 HTML 文本
@@ -99,7 +99,7 @@ def generate_rich_content(value):
     md = markdown.Markdown(
         extensions=[
             "markdown.extensions.extra",
-            "markdown.extensions.codehilite",
+            # "markdown.extensions.codehilite",
             # 记得在顶部引入 TocExtension 和 slugify
             TocExtension(slugify=slugify),
         ]

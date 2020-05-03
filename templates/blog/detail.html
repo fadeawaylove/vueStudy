@@ -14,8 +14,8 @@
             <span class="views-count"><a href="#">{{post.views}} 阅读</a></span>
         </div>
     </header>
-    <div class="editormd-preview editormd-preview-theme-default clearfix">
-        <div class="markdown-body editormd-preview-container">
+    <div class="editormd-preview editormd-preview-theme-default">
+        <div class="markdown-body editormd-preview-container" previewcontainer="true">
         {{ post.body_html | safe }}
         </div>
     </div>
