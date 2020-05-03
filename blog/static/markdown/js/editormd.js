@@ -3929,10 +3929,10 @@
         }        
         
         var markdownDoc   = (settings.markdown === "") ? saveTo.val() : settings.markdown;
-        if(markdownDoc.startsWith('<')||markdownDoc.endsWith('>')) {
-                $("#" + id).html(markdownDoc)
-                return
-            }
+        if (markdownDoc.startsWith('<') || markdownDoc.endsWith('>')) {
+            $("#" + id).html(markdownDoc)
+            return
+        }
         var markdownToC   = [];
 
         var rendererOptions = {  

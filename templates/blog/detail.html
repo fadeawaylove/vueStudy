@@ -14,8 +14,10 @@
             <span class="views-count"><a href="#">{{post.views}} 阅读</a></span>
         </div>
     </header>
-    <div class="entry-content clearfix">
+    <div class="editormd-preview editormd-preview-theme-default clearfix">
+        <div class="markdown-body editormd-preview-container">
         {{ post.body_html | safe }}
+        </div>
     </div>
 </article>
                 <section class="comment-area" id="comment-area">
