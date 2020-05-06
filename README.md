@@ -4,6 +4,7 @@
 
 #### 简介
 > 使用Django作为后台服务，前端页面从[模板之家](http://www.cssmoban.com/)采集，使用的前后端不分离模式。后台管理使用的xadmin，整合了mdeditor实现markdown文本的编辑。
+> 使用docker-compose进行部署，supervisor进行任务管理，使用fabric实现自动化部署，Nginx代理静态文件，Gunicorn作为web服务处理请求，cerbot申请并续期免费证书
 
 ------------------
 #### 首页
