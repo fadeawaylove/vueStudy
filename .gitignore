@@ -5,5 +5,7 @@ db.sqlite*
 _credentials.py
 !.dockerignore
 media
+*logs
+*log
 
 # git rm -r --cached .

@@ -1,9 +1,11 @@
+import logging
 from django.db import models
 from django.utils import timezone
 # Create your models here.
 from django.utils.safestring import mark_safe
 from django.conf import settings
 
+logger = logging.getLogger('log')
 
 class FileManager(models.Model):
     """
