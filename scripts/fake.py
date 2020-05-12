@@ -52,6 +52,7 @@ if __name__ == '__main__':
         body=pathlib.Path(BASE_DIR).joinpath('scripts', 'md.sample').read_text(encoding='utf-8'),
         category=Category.objects.create(name='Markdown测试'),
         author=user,
+        status=1
     )
 
     # 创建一年内的博客文章，英文
@@ -70,6 +71,7 @@ if __name__ == '__main__':
             create_time=create_time,
             category=cate,
             author=user,
+            status=1
         )
         post.tags.add(tag1, tag2)
         post.save()
@@ -89,6 +91,7 @@ if __name__ == '__main__':
             create_time=create_time,
             category=cate,
             author=user,
+            status=1
         )
         post.tags.add(tag1, tag2)
         post.save()

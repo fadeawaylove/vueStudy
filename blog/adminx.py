@@ -32,9 +32,9 @@ class PostResource(resources.ModelResource):
 
 @xadmin.sites.register(Post)
 class PostAdmin(object):
-    list_display = ['title', 'post_address', 'category', 'author', 'create_time', 'update_time']
-    fields = ['title', 'body', 'excerpt', 'category', 'tags']
-    list_filter = ["title", "category", "tags"]
+    list_display = ['title', 'post_address', 'category', 'author', 'status', 'create_time', 'update_time']
+    fields = ['title', 'body', 'status', 'excerpt', 'category', 'tags']
+    list_filter = ["title", "category", "tags", 'status']
 
     # 列表可直接修改的字段
     # list_editable = ['title', 'category']
