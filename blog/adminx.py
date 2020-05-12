@@ -5,7 +5,6 @@ from xadmin import views
 from .models import Post, Category, Tag
 
 
-
 class PostResource(resources.ModelResource):
     class Meta:
         model = Post
@@ -36,8 +35,10 @@ class PostAdmin(object):
     fields = ['title', 'body', 'status', 'excerpt', 'category', 'tags']
     list_filter = ["title", "category", "tags", 'status']
 
+    search_fields = ["title", "body"]
+
     # 列表可直接修改的字段
-    # list_editable = ['title', 'category']
+    # list_editable = ['status']
 
     import_export_args = {
         'import_resource_class': PostResource,
@@ -47,9 +48,11 @@ class PostAdmin(object):
         self.new_obj.author = self.request.user
         super().save_models()
 
+
 class CategoryAdmin(object):
     fields = ['name']
     list_filter = ["name"]
+
 
 class TagAdmin(object):
     fields = ['name']
