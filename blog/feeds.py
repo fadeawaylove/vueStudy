@@ -15,7 +15,7 @@ class AllPostsRssFeed(Feed):
  
     # 需要显示的内容条目
     def items(self):
-        return Post.objects.all()
+        return Post.objects.filter(status=1)
  
     # 聚合器中显示的内容条目的标题
     def item_title(self, item):
