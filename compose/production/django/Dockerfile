@@ -1,6 +1,8 @@
 FROM python:3.6-alpine
 ENV PYTHONUNBUFFERED 1
 
+RUN echo -e "https://mirrors.ustc.edu.cn/alpine/latest-stable/main\nhttps://mirrors.ustc.edu.cn/alpine/latest-stable/community" > /etc/apk/repositories
+
 RUN apk update
     # Pillow dependencies
 RUN apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
