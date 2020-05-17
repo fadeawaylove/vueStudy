@@ -1,7 +1,7 @@
 FROM python:3.6-alpine
 ENV PYTHONUNBUFFERED 1
 
-RUN ping http://www.google.com
+RUN ping www.google.com
 
 RUN apk update
     # Pillow dependencies
