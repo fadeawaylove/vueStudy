@@ -21,7 +21,7 @@ def _get_github_auth_responders():
 def deploy(c):
     program_name = "dog_blog"
     # 先停止应用
-    c.run(f"~/.local/bin/supervisorctl -c ~/etc/supervisor/supervisord.conf stop {program_name}")
+    c.run(f"supervisorctl -c ~/etc/supervisor/supervisord.conf stop {program_name}")
 
     # 拉代码
     with c.cd("~/code/dogBlog"):
@@ -31,7 +31,7 @@ def deploy(c):
     # 构建镜像
     with c.cd("~/code/dogBlog"):
         c.run('docker-compose -f production.yml build')
-        c.run(f"~/.local/bin/supervisorctl -c ~/etc/supervisor/supervisord.conf start {program_name}")
+        c.run(f"supervisorctl -c ~/etc/supervisor/supervisord.conf start {program_name}")
     # 删除为none的镜像
     c.run("docker images | grep none | awk '{print $3}' | xargs docker rmi")
 
