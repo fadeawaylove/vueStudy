@@ -1,9 +1,6 @@
 FROM python:3.6-alpine
 ENV PYTHONUNBUFFERED 1
 
-RUN echo http://mirror.yandex.ru/mirrors/alpine/v3.5/main > /etc/apk/repositories; \
-    echo http://mirror.yandex.ru/mirrors/alpine/v3.5/community >> /etc/apk/repositories
-
 RUN apk update
     # Pillow dependencies
 RUN apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
