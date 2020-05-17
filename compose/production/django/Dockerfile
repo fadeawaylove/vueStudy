@@ -1,8 +1,8 @@
 FROM python:3.6-alpine
 ENV PYTHONUNBUFFERED 1
-RUN apk update
+# RUN apk update
     # Pillow dependencies
-RUN  && apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
+RUN apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
 
 RUN apk add autoconf automake gcc g++ make libffi-dev libffi-dev python-dev openssl-dev
 
