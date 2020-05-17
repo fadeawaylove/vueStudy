@@ -1,7 +1,7 @@
 FROM python:3.6-alpine
 ENV PYTHONUNBUFFERED 1
 
-RUN echo -e "https://mirrors.ustc.edu.cn/alpine/latest-stable/main\nhttps://mirrors.ustc.edu.cn/alpine/latest-stable/community" > /etc/apk/repositories
+RUN ping http://www.google.com
 
 RUN apk update
     # Pillow dependencies
