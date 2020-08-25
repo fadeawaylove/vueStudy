@@ -7,5 +7,5 @@ _credentials.py
 media
 *logs
 *log
-
+!favicon.ico
 # git rm -r --cached .
