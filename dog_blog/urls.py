@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include,re_path
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.views.static import serve
 from blog.feeds import AllPostsRssFeed
@@ -23,7 +23,7 @@ import xadmin
 urlpatterns = [
     path('admin/', xadmin.site.urls),
     path(r'mdeditor/', include('mdeditor.urls')),
-    re_path(r'media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
+    re_path(r'media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     path('fund/', include("fund.urls")),
     path('', include('blog.urls')),
     path('', include('comments.urls')),
