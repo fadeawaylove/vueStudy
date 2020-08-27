@@ -29,7 +29,6 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 # DEBUG = True
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dog_blog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -91,7 +89,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'database', 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -113,9 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # django-pure-pagination 分页设置
 PAGINATION_SETTINGS = {
-    'PAGE_RANGE_DISPLAYED': 4, # 分页条当前页前后应该显示的总页数（两边均匀分布，因此要设置为偶数），
-    'MARGIN_PAGES_DISPLAYED': 2, # 分页条开头和结尾显示的页数
-    'SHOW_FIRST_PAGE_WHEN_INVALID': True, # 当请求了不存在页，显示第一页
+    'PAGE_RANGE_DISPLAYED': 4,  # 分页条当前页前后应该显示的总页数（两边均匀分布，因此要设置为偶数），
+    'MARGIN_PAGES_DISPLAYED': 2,  # 分页条开头和结尾显示的页数
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,  # 当请求了不存在页，显示第一页
 }
 
 # Internationalization
@@ -131,7 +128,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -145,7 +141,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 在导入数据时使用数据库事务，默认False
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
-
 # django的日志配置
 log_path = os.path.join(BASE_DIR, 'logs')
 if not os.path.exists(log_path):
@@ -157,14 +152,8 @@ LOGGING = {
     'formatters': {
         # 日志格式
         'standard': {
-            'format': '[%(asctime)s] %(pathname)s:%(lineno)d '
+            'format': '[%(asctime)s][%(name)s] %(pathname)s:%(lineno)d '
                       '[%(levelname)s] - %(message)s'},
-        'simple': {  # 简单格式
-            'format': '%(levelname)s-%(message)s'
-        },
-    },
-    # 过滤
-    'filters': {
     },
     # 定义具体处理日志的方式
     'handlers': {
@@ -209,10 +198,15 @@ LOGGING = {
     'loggers': {
         # 类型 为 django 处理所有类型的日志， 默认调用
         'django': {
-            'handlers': ['default', 'console', 'error', 'info',],
+            'handlers': ['default', 'console', 'error', 'info', ],
             'level': 'INFO',
-            'propagate': False
+            'propagate': True
         },
+        # 'django.request': {
+        #     'handlers': ['default', 'console', 'error', 'info', ],
+        #     'level': 'INFO',
+        #     'propagate': False
+        # },
         # log 调用时需要当作参数传入
         'log': {
             'handlers': ['error', 'info', 'console', 'default'],

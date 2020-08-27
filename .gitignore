@@ -7,6 +7,6 @@ _credentials.py
 media
 *logs
 *log
-
+static/
 !blog
 # git rm -r --cached .
